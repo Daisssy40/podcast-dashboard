@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>小宇宙播客看板</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 24px; }
+    h1, h2 { margin-top: 28px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; font-size: 14px; }
+    th { background: #f6f6f6; }
+    .note { color: #666; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>小宇宙播客数据看板</h1>
+  <p class="note">说明：粉丝/订阅/播放/完播率等平台私有指标可能缺失，当前以公开页面可抓字段为主。</p>
+
+  <h2>节目汇总</h2>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>podcast_title</th>
+      <th>subscriber_count</th>
+      <th>episodes_captured</th>
+      <th>avg_update_interval_days</th>
+      <th>avg_duration_minutes</th>
+      <th>avg_play_count</th>
+      <th>avg_comment_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>商业就是这样</td>
+      <td>779685</td>
+      <td>15</td>
+      <td>4.21</td>
+      <td>33.73</td>
+      <td>39490.40</td>
+      <td>68.40</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>264010</td>
+      <td>15</td>
+      <td>9.64</td>
+      <td>171.13</td>
+      <td>81053.80</td>
+      <td>209.33</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>562332</td>
+      <td>15</td>
+      <td>7.79</td>
+      <td>64.40</td>
+      <td>59041.47</td>
+      <td>110.13</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h2>图表</h2>
+  <div>                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="e82f1b96-0a37-4686-8c7e-1bdd0b59c89e" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("e82f1b96-0a37-4686-8c7e-1bdd0b59c89e")) {                    Plotly.newPlot(                        "e82f1b96-0a37-4686-8c7e-1bdd0b59c89e",                        [{"hovertemplate":"podcast_title=%{x}\u003cbr\u003esubscriber_count=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","orientation":"v","showlegend":false,"textposition":"auto","x":["\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u7845\u8c37101","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55"],"xaxis":"x","y":{"dtype":"i4","bdata":"peULAJyUCABKBwQA"},"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"podcast_title"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"subscriber_count"}},"legend":{"tracegroupgap":0},"title":{"text":"\u8ba2\u9605\u91cf\uff08\u516c\u5f00\u9875\u53ef\u89c1\u503c\uff09"},"barmode":"relative"},                        {"responsive": true}                    )                };            </script>        </div><div>                            <div id="0b00e087-af14-452f-be8b-ef329db03196" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("0b00e087-af14-452f-be8b-ef329db03196")) {                    Plotly.newPlot(                        "0b00e087-af14-452f-be8b-ef329db03196",                        [{"hovertemplate":"podcast_title=%{y}\u003cbr\u003epublish_date=%{x}\u003cbr\u003eduration_minutes=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","marker":{"color":"#636efa","size":{"dtype":"i2","bdata":"WACLAFQA5wCKANkACAFTAHEAngCVAbkAeQDCAJMA"},"sizemode":"area","sizeref":1.0125,"symbol":"circle"},"mode":"markers","name":"\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","orientation":"v","showlegend":true,"x":["2026-05-28","2026-05-27","2026-05-18","2026-05-11","2026-05-01","2026-04-24","2026-04-20","2026-04-14","2026-04-10","2026-03-30","2026-03-16","2026-02-13","2026-01-26","2026-01-22","2026-01-08"],"xaxis":"x","y":["\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55"],"yaxis":"y","type":"scatter"},{"hovertemplate":"podcast_title=%{y}\u003cbr\u003epublish_date=%{x}\u003cbr\u003eduration_minutes=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","marker":{"color":"#EF553B","size":{"dtype":"i1","bdata":"BiQ9HQxXIwknASUpCyk9"},"sizemode":"area","sizeref":1.0125,"symbol":"circle"},"mode":"markers","name":"\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","orientation":"v","showlegend":true,"x":["2026-05-31","2026-05-27","2026-05-24","2026-05-20","2026-05-17","2026-05-14","2026-05-13","2026-05-10","2026-05-06","2026-04-29","2026-04-22","2026-04-15","2026-04-12","2026-04-08","2026-04-01"],"xaxis":"x","y":["\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837"],"yaxis":"y","type":"scatter"},{"hovertemplate":"podcast_title=%{y}\u003cbr\u003epublish_date=%{x}\u003cbr\u003eduration_minutes=%{marker.size}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"\u7845\u8c37101","marker":{"color":"#00cc96","size":{"dtype":"i1","bdata":"QUJSRigyQztCQUM8SThQ"},"sizemode":"area","sizeref":1.0125,"symbol":"circle"},"mode":"markers","name":"\u7845\u8c37101","orientation":"v","showlegend":true,"x":["2026-05-25","2026-05-21","2026-05-15","2026-05-09","2026-04-22","2026-04-17","2026-04-10","2026-04-01","2026-03-26","2026-03-20","2026-03-13","2026-03-04","2026-02-26","2026-02-14","2026-02-04"],"xaxis":"x","y":["\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101"],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"publish_date"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"podcast_title"},"categoryorder":"array","categoryarray":["\u7845\u8c37101","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55"]},"legend":{"title":{"text":"podcast_title"},"tracegroupgap":0,"itemsizing":"constant"},"title":{"text":"\u53d1\u5e03\u65f6\u95f4\u8f74\uff08\u70b9\u5927\u5c0f\u4ee3\u8868\u65f6\u957f\uff09"}},                        {"responsive": true}                    )                };            </script>        </div><div>                            <div id="96fd1b1d-16e7-4ac6-ba64-d118f9c05070" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("96fd1b1d-16e7-4ac6-ba64-d118f9c05070")) {                    Plotly.newPlot(                        "96fd1b1d-16e7-4ac6-ba64-d118f9c05070",                        [{"alignmentgroup":"True","hovertemplate":"podcast_title=%{x}\u003cbr\u003eduration_minutes=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa"},"name":"","notched":false,"offsetgroup":"","orientation":"v","showlegend":false,"x":["\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101","\u7845\u8c37101"],"x0":" ","xaxis":"x","y":{"dtype":"i2","bdata":"WACLAFQA5wCKANkACAFTAHEAngCVAbkAeQDCAJMABgAkAD0AHQAMAFcAIwAJACcAAQAlACkACwApAD0AQQBCAFIARgAoADIAQwA7AEIAQQBDADwASQA4AFAA"},"y0":" ","yaxis":"y","type":"box"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"podcast_title"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"duration_minutes"}},"legend":{"tracegroupgap":0},"title":{"text":"\u5355\u96c6\u65f6\u957f\u5206\u5e03\uff08\u5206\u949f\uff09"},"boxmode":"group"},                        {"responsive": true}                    )                };            </script>        </div><div>                            <div id="a667d42e-4378-46fa-a4b7-579625c0f3d1" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("a667d42e-4378-46fa-a4b7-579625c0f3d1")) {                    Plotly.newPlot(                        "a667d42e-4378-46fa-a4b7-579625c0f3d1",                        [{"hovertemplate":"podcast_title=\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55\u003cbr\u003eepisode_title=%{x}\u003cbr\u003ecomment_count=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"\u5f20\u5c0f\u73faJ\u00f9n\uff5c\u5546\u4e1a\u8bbf\u8c08\u5f55","orientation":"v","showlegend":true,"textposition":"auto","x":["140. \u5bf9\u59da\u987a\u5b87\u76844\u5c0f\u65f6\u8bbf\u8c08\uff1a\u8bf7\u5141\u8bb8\u6211\u5c0f\u75af\u4e00\u4e0b\uff01\u5728Anthropic\u548cGemini\u8bad\u6a21\u578b\u3001\u6280\u672f\u9884\u6d4b\u3001\u82f1\u96c4\u4e3b\u4e49\u5df2\u8fc7\u53bb","133. \u5bf9\u8c22\u8d5b\u5b81\u76847\u5c0f\u65f6\u9a6c\u62c9\u677e\u8bbf\u8c08\uff1a\u4e16\u754c\u6a21\u578b\u3001\u9003\u51fa\u7845\u8c37\u3001AMI Labs\u3001\u4e24\u6b21\u62d2\u7eddIlya\u3001\u6768\u7acb\u6606\u3001\u674e\u98de\u98de\u548c42","138. \u5bf9\u7f57\u798f\u83893.5\u5c0f\u65f6\u8bbf\u8c08\uff1aAI\u8303\u5f0f\u5df2\u7136\u5de8\u53d8\uff01OpenClaw\u3001Agent\u8303\u5f0f\u5f88\u5403\u540e\u8bad\u7ec3\u3001\u5361\u7684\u5206\u914d\u3001\u7ec4\u7ec7\u5e73\u6743","136. \u5168\u7403\u5927\u6a21\u578b\u5b63\u62a5\u7b2c9\u96c6\uff1a\u548c\u5e7f\u5bc6\u804a\uff0cCoding\u662fAGI\u7b2c\u4e8c\u5e55\u3001\u7845\u8c37\u5fa1\u4e09\u5bb6\u771f\u76f8\u3001\u6a21\u578b\u6b63\u6210\u4e3a\u65b0\u4e00\u4ee3OS","135. \u548c\u81ea\u7136\u9009\u62e9\u521b\u59cb\u4ebaTristan\u804a\uff0cElys\u3001\u8d5b\u535a\u5206\u8eab\u3001\u7075\u9b42\u3001Context\u7684\u83b7\u53d6\u4e0e\u6d41\u52a8\u548cAI\u793e\u4ea4\u7f51\u7edc","130. \u5f20\u6708\u5149\u521b\u4e1a\u4e24\u5e74\u9996\u6b21\u8bbf\u8c08\uff1a\u5999\u9e2d\u4e0d\u662fAI Native\u4ea7\u54c1\u3001\u6d41\u7a0b\u5230\u4e0a\u4e0b\u6587\u8bbe\u8ba1\u3001One Way Door\u548c\u4e59\u5973\u6e38\u620f","129. \u5168\u7403\u5927\u6a21\u578b\u7b2c\u4e00\u80a1\u7684\u4e0a\u5e02\u8bbf\u8c08\uff0c\u548c\u667a\u8c31CEO\u5f20\u9e4f\u804a\uff1a\u6562\u95ee\u8def\u5728\u4f55\u65b9\uff1f","143. \u5bf9\u4f55\u5c0f\u9e4f\u7684\u7b2c\u4e8c\u6b21\u8bbf\u8c08\uff1a\u66f4\u5927\u8d4c\u6ce8\u3001\u4eba\u5f62\u673a\u5668\u4ebaIron\u8bde\u751f\u3001\u90a3\u573a\u610f\u5916\u3001\u6280\u672f\u5267\u53d8\u4e0bCEO\u3001GX\u548c\u7f1d\u5408\u602a","137. \u5bf9\u6d2a\u4e50\u6f7c\u76844\u5c0f\u65f6\u8bbf\u8c08\uff1aAI for Math\u3001\u628a\u6570\u5b66\u53d8\u6210Lean\u3001\u6570\u5b66\u5929\u4e66\u4e2d\u7684\u8bc1\u660e\u3001\u76f4\u89c9\u3001\u88ab\u521b\u9020\u4e0e\u88ab\u53d1\u73b0\u7684","139. \u3010Agent\u7684\u7efc\u8ff0\u3011\u548c\u82cf\u715c\u804aAgent\u6280\u672f\u53f2\u3001OpenClaw Moment\u3001\u8fb9\u754c\u7684\u6d88\u5f2d\u548c\u793e\u4f1a\u7684\u8f90\u5c04","141. Freda\u7684\u6295\u8d44\u672d\u8bb0\u7b2c2\u96c6\uff1aTokenmaxxing\u3001\u628a\u7535\u673a\u585e\u8fdb\u84b8\u6c7d\u673a\u3001\u63a5\u529b\u8d5b\u53d8\u7bee\u7403\u8d5b\u3001\u5b64\u72ec\u3001\u4eba\u7684\u8fde\u63a5","131. \u5370\u5947\u51fa\u4efb\u9636\u8dc3\u661f\u8fb0\u8463\u4e8b\u957f\u7684\u8bbf\u8c08\uff1a\u806a\u660e\u4eba\u7684\u8bf1\u60d1\u3001\u53d6\u820d\u3001\u8d85\u957f\u94fe\u8def\u6b8b\u9177\u6dd8\u6c70\u8d5b\u3001\u9636\u8dc3\u51fd\u6570\u548c\u8d85\u591a\u5143\u65b9\u7a0b","142. \u96e8\u68ee\u7684\u521b\u6295\u89c2\u5bdf\u7b2c2\u96c6\uff1aHarness\u3001\u4e0b\u4e00\u4e2a\u5b57\u8282\u30012026\u5927\u673a\u4f1a\u548cStanley Druckenmiller"],"xaxis":"x","y":{"dtype":"i2","bdata":"zQLyATsB9gDOALAAlQCMAIcAfQBtAGoATQA="},"yaxis":"y","type":"bar"},{"hovertemplate":"podcast_title=\u7845\u8c37101\u003cbr\u003eepisode_title=%{x}\u003cbr\u003ecomment_count=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"\u7845\u8c37101","marker":{"color":"#EF553B","pattern":{"shape":""}},"name":"\u7845\u8c37101","orientation":"v","showlegend":true,"textposition":"auto","x":["E236\uff5c99%\u7684\u4f5c\u4e1a\u90fd\u662fAI\u5199\u7684\uff1a\u5f53\u4ee3\u540d\u6821\u751f\u773c\u91cc\uff0c\u5927\u5b66\u8fd8\u5269\u4e0b\u4ec0\u4e48\uff1f","E225\uff5cSaaS\u4e1a\u6570\u5343\u4ebf\u5e02\u503c\u84b8\u53d1\uff1aAI\u5982\u4f55\u53d8\u9769\u7ec4\u7ec7\u67b6\u6784\uff1f","E226\uff5c\u804a\u804aDeepMind\u521b\u59cb\u4eba\u54c8\u8428\u6bd4\u65af\uff1a\u4e00\u4e2a\u79d1\u5b66\u5bb6\u4e0e\u5931\u63a7\u7684AI\u7ade\u8d5b","E224\uff5c\u6df1\u5ea6\u62c6\u89e3Clawdbot\uff0c\u4e3a\u4f55\u5b83\u80fd\u6210\u4e3a2026\u5e74\u7b2c\u4e00\u4e2a\u73b0\u8c61\u7ea7\u4ea7\u54c1\uff1f","E229\uff5c\u4ece\u624b\u5de5\u4f5c\u574a\u5230\u5168\u7403\u7b2c\u4e00\uff1a\u4e2d\u56fd\u52a8\u529b\u7535\u6c60\u9006\u88ad\u53f2","E238\uff5c\u804a\u804aHarness\u65f6\u4ee3AI-First\u7684\u7ec4\u7ec7\u67b6\u6784\uff1a\u4ece\u4fe1\u4efb\u4eba\u5230\u4fe1\u4efbAI","E235\uff5c20\u5e74\u5185CAR-T\u6cbb\u6108\u764c\u75c7\uff1f\u4e0e\u5218\u8bda\u535a\u58eb\u804a\u804a\u764c\u75c7\u6cbb\u7597\u7684\u5e95\u5c42\u54f2\u5b66","E232\uff5c\u9910\u996e\u51fa\u6d77\u6709\u65b0\u62db\u513f\u5417\uff1f\u4ece\u9f0e\u6cf0\u4e30\u4e0e\u8d21\u8336\u62ff\u4e0b\u7f8e\u56fd\u521d\u4ee3\u9500\u51a0\u804a\u8d77","E234\uff5c\u672a\u6765\u5b9e\u62cd\u7535\u5f71\u8fd8\u5b58\u5728\u5417\uff1f\u4e0e\u5bfc\u6f14\u9646\u5ddd\u804a\u804aAI\u7ed9\u5f71\u89c6\u4eba\u7684\u6050\u60e7\u4e0e\u81ea\u7531","E227\uff5c\u7f8e\u56fd\u533b\u7597\u5e02\u573aAI\u4e89\u593a\u6218\uff1a\u5de8\u5934\u62bc\u6ce8\uff0c\u521b\u4e1a\u516c\u53f8\u80fd\u8d62\u5417\uff1f","E233\uff5c\u7845\u8c37\u53f3\u7ffc\u7684\u6743\u529b\u7f51\u5982\u4f55\u5f62\u6210\uff1f\u804a\u804a\u5f7c\u5f97\u00b7\u8482\u5c14\u7684\u601d\u60f3\u542f\u8499\u62fc\u56fe","E230\uff5c1\u4e07\u4ebf\u6536\u5165\u9884\u671f\u80cc\u540e\uff1a\u82f1\u4f1f\u8fbe\u7684\u5dc5\u5cf0\u4e0e\u8f6f\u808b"],"xaxis":"x","y":{"dtype":"i2","bdata":"EQGwAKEAmAByAGsAYABYAFMATwBMAEwA"},"yaxis":"y","type":"bar"},{"hovertemplate":"podcast_title=\u5546\u4e1a\u5c31\u662f\u8fd9\u6837\u003cbr\u003eepisode_title=%{x}\u003cbr\u003ecomment_count=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","marker":{"color":"#00cc96","pattern":{"shape":""}},"name":"\u5546\u4e1a\u5c31\u662f\u8fd9\u6837","orientation":"v","showlegend":true,"textposition":"auto","x":["Vol.258 \u4e3a\u4ec0\u4e48\u5230\u5904\u90fd\u662f\u6cf0\u5170\u5c3c\u65af\u7684\u5e7f\u544a\uff1f","Vol.251 \u4e0d\u60f3\u505a\u5c0f\u7ea2\u4e66\u7684\u201c\u5f97\u7269\u201d\u5f00\u4e0d\u4e86\u201c\u97e9\u56fd\u4f18\u8863\u5e93\u201d feat. \u73b0\u5728\u8fdb\u884c\u65f6","\u57ce\u5e02\u5c31\u662f\u8fd9\u683719\uff5c\u6c88\u4ece\u4e50\uff1a\u65b0\u4e00\u7ebf\u201c\u5766\u767d\u5c40\u201d","Vol.254 \u5927\u724c\u7684\u521b\u610f\u603b\u76d1\u4e3a\u4ec0\u4e48\u6210\u4e86\u9ad8\u5371\u804c\u4e1a\uff1f","Vol.252 \u5f20\u96ea\u4e3a\u4ec0\u4e48\u80fd\u8d62\uff1f"],"xaxis":"x","y":{"dtype":"i2","bdata":"qwB2AGAAWgBOAA=="},"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"episode_title"},"tickangle":-45},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"comment_count"}},"legend":{"title":{"text":"podcast_title"},"tracegroupgap":0},"title":{"text":"\u8bc4\u8bba\u6570 Top 30\uff08\u6293\u53d6\u6837\u672c\uff09"},"barmode":"relative"},                        {"responsive": true}                    )                };            </script>        </div>
+
+  <h2>集数明细（前 100 行）</h2>
+  <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>podcast_title</th>
+      <th>podcast_url</th>
+      <th>episode_title</th>
+      <th>published_relative</th>
+      <th>published_at_est</th>
+      <th>duration_minutes</th>
+      <th>play_count</th>
+      <th>comment_count</th>
+      <th>like_count</th>
+      <th>completion_rate</th>
+      <th>data_source</th>
+      <th>subscribers</th>
+      <th>days_since_publish</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>143. 对何小鹏的第二次访谈：更大赌注、人形机器人Iron诞生、那场意外、技术剧变下CEO、GX和缝合怪</td>
+      <td>None</td>
+      <td>2026-05-28 00:00:00.000</td>
+      <td>88</td>
+      <td>38586</td>
+      <td>140</td>
+      <td>89</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>142. 雨森的创投观察第2集：Harness、下一个字节、2026大机会和Stanley Druckenmiller</td>
+      <td>None</td>
+      <td>2026-05-27 00:00:00.000</td>
+      <td>139</td>
+      <td>54087</td>
+      <td>77</td>
+      <td>422</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>141. Freda的投资札记第2集：Tokenmaxxing、把电机塞进蒸汽机、接力赛变篮球赛、孤独、人的连接</td>
+      <td>None</td>
+      <td>2026-05-18 00:00:00.000</td>
+      <td>84</td>
+      <td>31923</td>
+      <td>109</td>
+      <td>205</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>140. 对姚顺宇的4小时访谈：请允许我小疯一下！在Anthropic和Gemini训模型、技术预测、英雄主义已过去</td>
+      <td>None</td>
+      <td>2026-05-11 00:00:00.000</td>
+      <td>231</td>
+      <td>270761</td>
+      <td>717</td>
+      <td>2081</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>139. 【Agent的综述】和苏煜聊Agent技术史、OpenClaw Moment、边界的消弭和社会的辐射</td>
+      <td>None</td>
+      <td>2026-05-01 00:00:00.000</td>
+      <td>138</td>
+      <td>67363</td>
+      <td>125</td>
+      <td>511</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>138. 对罗福莉3.5小时访谈：AI范式已然巨变！OpenClaw、Agent范式很吃后训练、卡的分配、组织平权</td>
+      <td>None</td>
+      <td>2026-04-24 03:44:26.609</td>
+      <td>217</td>
+      <td>123595</td>
+      <td>315</td>
+      <td>817</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>137. 对洪乐潼的4小时访谈：AI for Math、把数学变成Lean、数学天书中的证明、直觉、被创造与被发现的</td>
+      <td>None</td>
+      <td>2026-04-20 03:00:00.000</td>
+      <td>264</td>
+      <td>41277</td>
+      <td>135</td>
+      <td>436</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>136. 全球大模型季报第9集：和广密聊，Coding是AGI第二幕、硅谷御三家真相、模型正成为新一代OS</td>
+      <td>None</td>
+      <td>2026-04-14 23:30:00.000</td>
+      <td>83</td>
+      <td>78860</td>
+      <td>246</td>
+      <td>696</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>135. 和自然选择创始人Tristan聊，Elys、赛博分身、灵魂、Context的获取与流动和AI社交网络</td>
+      <td>None</td>
+      <td>2026-04-10 09:08:49.137</td>
+      <td>113</td>
+      <td>24578</td>
+      <td>206</td>
+      <td>130</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>134. 【数据的综述】和谢晨聊，新时代的石油、历史、版图、数据金字塔、定价与Recipe</td>
+      <td>None</td>
+      <td>2026-03-30 00:00:00.000</td>
+      <td>158</td>
+      <td>39165</td>
+      <td>74</td>
+      <td>162</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>133. 对谢赛宁的7小时马拉松访谈：世界模型、逃出硅谷、AMI Labs、两次拒绝Ilya、杨立昆、李飞飞和42</td>
+      <td>None</td>
+      <td>2026-03-16 04:01:08.137</td>
+      <td>405</td>
+      <td>158761</td>
+      <td>498</td>
+      <td>1391</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>132. 对星海图创始人高继扬的3小时访谈：鲶鱼、曾国藩、Waymo与Momenta的两面、一只狼与许华哲的离开</td>
+      <td>None</td>
+      <td>2026-02-13 10:00:00.000</td>
+      <td>185</td>
+      <td>48904</td>
+      <td>67</td>
+      <td>301</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>131. 印奇出任阶跃星辰董事长的访谈：聪明人的诱惑、取舍、超长链路残酷淘汰赛、阶跃函数和超多元方程</td>
+      <td>None</td>
+      <td>2026-01-26 01:30:13.125</td>
+      <td>121</td>
+      <td>52895</td>
+      <td>106</td>
+      <td>246</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>130. 张月光创业两年首次访谈：妙鸭不是AI Native产品、流程到上下文设计、One Way Door和乙女游戏</td>
+      <td>None</td>
+      <td>2026-01-22 00:00:00.000</td>
+      <td>194</td>
+      <td>49585</td>
+      <td>176</td>
+      <td>663</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>张小珺Jùn｜商业访谈录</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962</td>
+      <td>129. 全球大模型第一股的上市访谈，和智谱CEO张鹏聊：敢问路在何方？</td>
+      <td>None</td>
+      <td>2026-01-08 01:09:14.477</td>
+      <td>147</td>
+      <td>135467</td>
+      <td>149</td>
+      <td>521</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>264010</td>
+      <td>144</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>商业小样41 | ZARA创始人，竟然还是全球“最大地主”</td>
+      <td>None</td>
+      <td>2026-05-31 23:00:00.000</td>
+      <td>6</td>
+      <td>10310</td>
+      <td>23</td>
+      <td>6</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.258 为什么到处都是泰兰尼斯的广告？</td>
+      <td>None</td>
+      <td>2026-05-27 23:00:00.000</td>
+      <td>36</td>
+      <td>42186</td>
+      <td>171</td>
+      <td>78</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>城市就是这样19｜沈从乐：新一线“坦白局”</td>
+      <td>None</td>
+      <td>2026-05-24 23:00:00.000</td>
+      <td>61</td>
+      <td>37015</td>
+      <td>96</td>
+      <td>85</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.257 为什么上证是“综指”、深证用“成指”？</td>
+      <td>None</td>
+      <td>2026-05-20 23:00:00.000</td>
+      <td>29</td>
+      <td>36014</td>
+      <td>48</td>
+      <td>62</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>商业小样40 | 美光和麦当劳有什么关系？</td>
+      <td>None</td>
+      <td>2026-05-17 23:00:00.000</td>
+      <td>12</td>
+      <td>32939</td>
+      <td>35</td>
+      <td>53</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>专访腾竞体育冯骁：从业十五年，如何从0开始搭建职业电竞赛事</td>
+      <td>None</td>
+      <td>2026-05-14 23:00:00.000</td>
+      <td>87</td>
+      <td>24347</td>
+      <td>56</td>
+      <td>60</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.256 职业电竞，“职业”在哪儿？</td>
+      <td>None</td>
+      <td>2026-05-13 23:00:00.000</td>
+      <td>35</td>
+      <td>34735</td>
+      <td>74</td>
+      <td>75</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>商业小样39 | 汽车轮胎涨价两轮，为何无人知晓？</td>
+      <td>None</td>
+      <td>2026-05-10 23:00:00.000</td>
+      <td>9</td>
+      <td>32791</td>
+      <td>28</td>
+      <td>44</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.255 戴比尔斯与破灭的钻石神话</td>
+      <td>None</td>
+      <td>2026-05-06 23:00:00.000</td>
+      <td>39</td>
+      <td>48293</td>
+      <td>71</td>
+      <td>146</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>一则好消息</td>
+      <td>None</td>
+      <td>2026-04-29 01:13:16.530</td>
+      <td>1</td>
+      <td>9962</td>
+      <td>40</td>
+      <td>6</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.254 大牌的创意总监为什么成了高危职业？</td>
+      <td>None</td>
+      <td>2026-04-22 23:00:00.000</td>
+      <td>37</td>
+      <td>54927</td>
+      <td>90</td>
+      <td>79</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.253 西南航空，从特立独行到泯然众人</td>
+      <td>None</td>
+      <td>2026-04-15 23:00:00.000</td>
+      <td>41</td>
+      <td>55497</td>
+      <td>69</td>
+      <td>146</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>商业小样38 | 拿什么回馈你，我的股东</td>
+      <td>None</td>
+      <td>2026-04-12 23:00:00.000</td>
+      <td>11</td>
+      <td>33697</td>
+      <td>29</td>
+      <td>36</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.252 张雪为什么能赢？</td>
+      <td>None</td>
+      <td>2026-04-08 23:00:00.000</td>
+      <td>41</td>
+      <td>64848</td>
+      <td>78</td>
+      <td>139</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <td>商业就是这样</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/6022a180ef5fdaddc30bb101</td>
+      <td>Vol.251 不想做小红书的“得物”开不了“韩国优衣库” feat. 现在进行时</td>
+      <td>None</td>
+      <td>2026-04-01 23:00:00.000</td>
+      <td>61</td>
+      <td>74795</td>
+      <td>118</td>
+      <td>109</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>779685</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E238｜聊聊Harness时代AI-First的组织架构：从信任人到信任AI</td>
+      <td>None</td>
+      <td>2026-05-25 00:00:00.000</td>
+      <td>65</td>
+      <td>39879</td>
+      <td>107</td>
+      <td>182</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E237｜央视和FIFA谈判纷争背后，体育赛事转播权的博弈与生意</td>
+      <td>None</td>
+      <td>2026-05-21 00:00:00.000</td>
+      <td>66</td>
+      <td>33951</td>
+      <td>50</td>
+      <td>100</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E236｜99%的作业都是AI写的：当代名校生眼里，大学还剩下什么？</td>
+      <td>None</td>
+      <td>2026-05-15 00:00:00.000</td>
+      <td>82</td>
+      <td>68289</td>
+      <td>273</td>
+      <td>853</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E235｜20年内CAR-T治愈癌症？与刘诚博士聊聊癌症治疗的底层哲学</td>
+      <td>None</td>
+      <td>2026-05-09 00:00:00.000</td>
+      <td>70</td>
+      <td>36723</td>
+      <td>96</td>
+      <td>324</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E234｜未来实拍电影还存在吗？与导演陆川聊聊AI给影视人的恐惧与自由</td>
+      <td>None</td>
+      <td>2026-04-22 06:00:00.000</td>
+      <td>40</td>
+      <td>40719</td>
+      <td>83</td>
+      <td>149</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E233｜硅谷右翼的权力网如何形成？聊聊彼得·蒂尔的思想启蒙拼图</td>
+      <td>None</td>
+      <td>2026-04-17 00:00:00.000</td>
+      <td>50</td>
+      <td>46334</td>
+      <td>76</td>
+      <td>118</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E232｜餐饮出海有新招儿吗？从鼎泰丰与贡茶拿下美国初代销冠聊起</td>
+      <td>None</td>
+      <td>2026-04-10 00:00:00.000</td>
+      <td>67</td>
+      <td>37183</td>
+      <td>88</td>
+      <td>56</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E231｜从B2B到A2A：Agent新基建，如何让“一人企业”做全球生意？</td>
+      <td>None</td>
+      <td>2026-04-01 00:00:00.000</td>
+      <td>59</td>
+      <td>62189</td>
+      <td>45</td>
+      <td>236</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E230｜1万亿收入预期背后：英伟达的巅峰与软肋</td>
+      <td>None</td>
+      <td>2026-03-26 00:00:00.000</td>
+      <td>66</td>
+      <td>76268</td>
+      <td>76</td>
+      <td>275</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E229｜从手工作坊到全球第一：中国动力电池逆袭史</td>
+      <td>None</td>
+      <td>2026-03-20 00:00:00.000</td>
+      <td>65</td>
+      <td>49780</td>
+      <td>114</td>
+      <td>141</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E228｜谷歌TPU能撼动英伟达吗？前TPU工程师首次揭秘</td>
+      <td>None</td>
+      <td>2026-03-13 00:00:00.000</td>
+      <td>67</td>
+      <td>52507</td>
+      <td>76</td>
+      <td>184</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E227｜美国医疗市场AI争夺战：巨头押注，创业公司能赢吗？</td>
+      <td>None</td>
+      <td>2026-03-04 00:00:00.000</td>
+      <td>60</td>
+      <td>81392</td>
+      <td>79</td>
+      <td>293</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E226｜聊聊DeepMind创始人哈萨比斯：一个科学家与失控的AI竞赛</td>
+      <td>None</td>
+      <td>2026-02-26 00:00:00.000</td>
+      <td>73</td>
+      <td>59292</td>
+      <td>161</td>
+      <td>248</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E225｜SaaS业数千亿市值蒸发：AI如何变革组织架构？</td>
+      <td>None</td>
+      <td>2026-02-14 00:00:00.000</td>
+      <td>56</td>
+      <td>57302</td>
+      <td>176</td>
+      <td>194</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>107</td>
+    </tr>
+    <tr>
+      <td>硅谷101</td>
+      <td>https://www.xiaoyuzhoufm.com/podcast/5e5c52c9418a84a04625e6cc</td>
+      <td>E224｜深度拆解Clawdbot，为何它能成为2026年第一个现象级产品？</td>
+      <td>None</td>
+      <td>2026-02-04 00:00:00.000</td>
+      <td>80</td>
+      <td>143814</td>
+      <td>152</td>
+      <td>752</td>
+      <td>None</td>
+      <td>web_next_data</td>
+      <td>562332</td>
+      <td>117</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
