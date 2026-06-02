@@ -1,0 +1,22 @@
+# 密钥 / 环境变量（含 access token，切勿提交）
+.env
+.env.*
+
+# 虚拟环境
+.venv/
+venv/
+
+# 系统文件
+.DS_Store
+**/.DS_Store
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 抓取产物中的体积文件（看板只需 CSV，xlsx/html 可不入库）
+output/*.xlsx
+output/*.html
+
+# 本地日志
+*.log
