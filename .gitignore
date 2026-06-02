@@ -18,5 +18,9 @@ __pycache__/
 output/*.xlsx
 output/*.html
 
+# 数据仓库：历史快照和数据库不进 Git（latest 可按需提交）
+data/snapshots/
+data/database/
+
 # 本地日志
 *.log

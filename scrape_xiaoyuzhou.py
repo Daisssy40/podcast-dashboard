@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import re
+import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -617,6 +618,127 @@ def export_html(df: pd.DataFrame, summary: pd.DataFrame, output_path: Path) -> N
     output_path.write_text(html, encoding="utf-8")
 
 
+def upsert_history_sqlite(df: pd.DataFrame, db_path: Path, snapshot_at: datetime) -> int:
+    """将本次抓取明细追加到 SQLite 历史表，按唯一键去重。"""
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(db_path)
+    try:
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS episode_history (
+                snapshot_at TEXT NOT NULL,
+                podcast_title TEXT,
+                podcast_url TEXT,
+                episode_title TEXT,
+                published_relative TEXT,
+                published_at_est TEXT,
+                duration_minutes REAL,
+                play_count REAL,
+                comment_count REAL,
+                like_count REAL,
+                completion_rate REAL,
+                subscribers REAL,
+                data_source TEXT,
+                days_since_publish REAL,
+                UNIQUE(snapshot_at, podcast_title, episode_title, published_at_est)
+            )
+            """
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_episode_history_pub ON episode_history(published_at_est)"
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_episode_history_podcast ON episode_history(podcast_title)"
+        )
+
+        if df.empty:
+            conn.commit()
+            return 0
+
+        rows_df = df.copy()
+        rows_df["snapshot_at"] = snapshot_at.strftime("%Y-%m-%d %H:%M:%S")
+        rows_df["published_at_est"] = pd.to_datetime(
+            rows_df["published_at_est"], errors="coerce"
+        ).dt.strftime("%Y-%m-%d %H:%M:%S")
+
+        columns = [
+            "snapshot_at",
+            "podcast_title",
+            "podcast_url",
+            "episode_title",
+            "published_relative",
+            "published_at_est",
+            "duration_minutes",
+            "play_count",
+            "comment_count",
+            "like_count",
+            "completion_rate",
+            "subscribers",
+            "data_source",
+            "days_since_publish",
+        ]
+        rows = []
+        for row in rows_df[columns].itertuples(index=False, name=None):
+            normalized = tuple(None if pd.isna(v) else v for v in row)
+            rows.append(normalized)
+
+        before = conn.total_changes
+        conn.executemany(
+            """
+            INSERT OR IGNORE INTO episode_history (
+                snapshot_at, podcast_title, podcast_url, episode_title, published_relative,
+                published_at_est, duration_minutes, play_count, comment_count, like_count,
+                completion_rate, subscribers, data_source, days_since_publish
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            rows,
+        )
+        conn.commit()
+        return conn.total_changes - before
+    finally:
+        conn.close()
+
+
+def persist_data_warehouse(
+    df: pd.DataFrame,
+    summary: pd.DataFrame,
+    snapshot_at: datetime,
+    data_dir: Path,
+) -> Dict[str, Path]:
+    """落地三层数据：snapshot（不可覆盖）+ latest（覆盖）+ SQLite 历史库。"""
+    snapshots_dir = data_dir / "snapshots"
+    latest_dir = data_dir / "latest"
+    db_dir = data_dir / "database"
+    snapshots_dir.mkdir(parents=True, exist_ok=True)
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    db_dir.mkdir(parents=True, exist_ok=True)
+
+    ts = snapshot_at.strftime("%Y%m%d_%H%M%S")
+    snapshot_csv = snapshots_dir / f"{ts}.csv"
+    latest_csv = latest_dir / "latest.csv"
+    latest_summary_csv = latest_dir / "latest_summary.csv"
+    db_path = db_dir / "podcast.db"
+
+    df_with_snapshot = df.copy()
+    df_with_snapshot["snapshot_at"] = snapshot_at.strftime("%Y-%m-%d %H:%M:%S")
+
+    df_with_snapshot.to_csv(snapshot_csv, index=False, encoding="utf-8-sig")
+    df_with_snapshot.to_csv(latest_csv, index=False, encoding="utf-8-sig")
+    summary.to_csv(latest_summary_csv, index=False, encoding="utf-8-sig")
+    inserted = upsert_history_sqlite(df, db_path, snapshot_at)
+    print(f"[OK] Snapshot CSV: {snapshot_csv}")
+    print(f"[OK] Latest CSV:   {latest_csv}")
+    print(f"[OK] Latest Summary CSV: {latest_summary_csv}")
+    print(f"[OK] SQLite:      {db_path} (inserted {inserted} rows)")
+
+    return {
+        "snapshot_csv": snapshot_csv,
+        "latest_csv": latest_csv,
+        "latest_summary_csv": latest_summary_csv,
+        "sqlite_db": db_path,
+    }
+
+
 def load_urls(path: Path) -> List[str]:
     urls = []
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -640,6 +762,12 @@ def main() -> None:
         type=Path,
         default=Path("output"),
         help="输出目录。",
+    )
+    parser.add_argument(
+        "--data-dir",
+        type=Path,
+        default=Path("data"),
+        help="数据仓库目录（snapshots/latest/database）。",
     )
     parser.add_argument("--limit", type=int, default=100, help="每个播客抓取集数上限。")
     parser.add_argument("--xyz-base-url", type=str, default=None, help="xyz 地址")
@@ -672,7 +800,8 @@ def main() -> None:
     )
     summary = summary_table(df)
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    snapshot_at = datetime.now()
+    timestamp = snapshot_at.strftime("%Y%m%d_%H%M%S")
     excel_path = args.out_dir / f"xiaoyuzhou_dashboard_{timestamp}.xlsx"
     html_path = args.out_dir / f"xiaoyuzhou_dashboard_{timestamp}.html"
     csv_path = args.out_dir / f"xiaoyuzhou_episodes_{timestamp}.csv"
@@ -680,6 +809,7 @@ def main() -> None:
     df.to_csv(csv_path, index=False, encoding="utf-8-sig")
     export_excel(df, summary, excel_path)
     export_html(df, summary, html_path)
+    persist_data_warehouse(df, summary, snapshot_at=snapshot_at, data_dir=args.data_dir)
 
     print(f"[OK] CSV:   {csv_path}")
     print(f"[OK] Excel: {excel_path}")

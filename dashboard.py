@@ -7,6 +7,7 @@
 import glob
 import os
 from pathlib import Path
+from typing import Optional
 
 import pandas as pd
 import plotly.express as px
@@ -29,7 +30,9 @@ st.markdown("""
 
 
 # ── 数据加载 ──────────────────────────────────────────────
-OUTPUT_DIR = Path(__file__).parent / "output"
+DATA_DIR = Path(__file__).parent / "data"
+LATEST_CSV = DATA_DIR / "latest" / "latest.csv"
+OUTPUT_DIR = Path(__file__).parent / "output"  # 兼容旧结构
 
 PODCAST_COLORS = {
     "商业就是这样": "#378ADD",
@@ -46,18 +49,32 @@ def color_for(name: str) -> str:
 
 
 @st.cache_data(ttl=300)
-def load_latest_csv(output_dir: Path) -> pd.DataFrame:
-    """加载 output/ 目录下最新的 CSV 文件。"""
-    pattern = str(output_dir / "xiaoyuzhou_episodes_*.csv")
-    files = sorted(glob.glob(pattern), reverse=True)
-    if not files:
+def load_latest_csv(latest_csv: Path, output_dir: Path) -> pd.DataFrame:
+    """
+    优先读取 data/latest/latest.csv（数据仓库最新层），
+    若不存在则兼容回退读取 output/ 下最新时间戳 CSV。
+    """
+    source_path: Optional[Path] = None
+    if latest_csv.exists():
+        source_path = latest_csv
+    else:
+        pattern = str(output_dir / "xiaoyuzhou_episodes_*.csv")
+        files = sorted(glob.glob(pattern), reverse=True)
+        if files:
+            source_path = Path(files[0])
+
+    if source_path is None:
         return pd.DataFrame()
-    df = pd.read_csv(files[0], encoding="utf-8-sig")
+
+    df = pd.read_csv(source_path, encoding="utf-8-sig")
     df["published_at_est"] = pd.to_datetime(df["published_at_est"], errors="coerce")
+    if "snapshot_at" in df.columns:
+        df["snapshot_at"] = pd.to_datetime(df["snapshot_at"], errors="coerce")
     for col in ["play_count", "comment_count", "like_count", "subscribers", "duration_minutes"]:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
-    df["_source_file"] = Path(files[0]).name
+    df["_source_file"] = source_path.name
+    df["_source_path"] = str(source_path)
     return df
 
 
@@ -92,15 +109,34 @@ with col_refresh:
         st.cache_data.clear()
         st.rerun()
 
-df = load_latest_csv(OUTPUT_DIR)
+df = load_latest_csv(LATEST_CSV, OUTPUT_DIR)
 
 if df.empty:
-    st.warning(f"未找到数据文件。请先运行爬虫：\n```\npython scrape_xiaoyuzhou.py --limit 100\n```\n输出目录：`{OUTPUT_DIR}`")
+    st.warning(
+        "未找到数据文件。请先运行爬虫：\n"
+        "```\npython scrape_xiaoyuzhou.py --limit 100\n```\n"
+        f"期望路径：`{LATEST_CSV}`（兼容回退读取 `{OUTPUT_DIR}`）"
+    )
     st.stop()
 
 with col_info:
     src = df["_source_file"].iloc[0] if "_source_file" in df.columns else "未知"
-    st.caption(f"数据来源：`{src}`　｜　共 {len(df)} 条记录")
+    src_path = df["_source_path"].iloc[0] if "_source_path" in df.columns else src
+    latest_pub = df["published_at_est"].max() if "published_at_est" in df.columns else pd.NaT
+    latest_pub_text = latest_pub.strftime("%Y-%m-%d") if pd.notna(latest_pub) else "未知"
+
+    crawl_time_text = "未知"
+    if "snapshot_at" in df.columns and df["snapshot_at"].notna().any():
+        crawl_time_text = df["snapshot_at"].max().strftime("%Y-%m-%d %H:%M:%S")
+    elif isinstance(src, str) and src.startswith("xiaoyuzhou_episodes_") and src.endswith(".csv"):
+        ts = src.replace("xiaoyuzhou_episodes_", "").replace(".csv", "")
+        crawl_dt = pd.to_datetime(ts, format="%Y%m%d_%H%M%S", errors="coerce")
+        if pd.notna(crawl_dt):
+            crawl_time_text = crawl_dt.strftime("%Y-%m-%d %H:%M:%S")
+
+    st.caption(
+        f"数据来源：`{src_path}`　｜　共 {len(df)} 条记录　｜　数据截止日期：{latest_pub_text}　｜　抓取时间：{crawl_time_text}"
+    )
 
 summary = summary_table(df)
 podcasts = df["podcast_title"].unique().tolist()
