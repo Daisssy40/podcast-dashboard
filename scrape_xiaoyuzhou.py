@@ -20,6 +20,11 @@ USER_AGENT = (
 API_BASE = "https://api.xiaoyuzhoufm.com"
 
 
+def normalize_limit(limit: int) -> int:
+    """limit<=0 视为全量抓取（给一个足够大的上限用于循环控制）。"""
+    return limit if limit > 0 else 10**9
+
+
 def load_env_file(path: Path = Path(".env")) -> Dict[str, str]:
     if not path.exists():
         return {}
@@ -188,6 +193,7 @@ def unwrap_api_payload(payload: Dict) -> Dict:
 def fetch_podcast_by_api(
     token: str, device_id: str, url: str, limit: int, app_version: str, app_build: str
 ) -> Dict:
+    max_limit = normalize_limit(limit)
     pid = extract_pid_from_url(url)
     detail_raw = api_get(f"/v1/podcast/get?pid={pid}", token, device_id, app_version, app_build)
     detail_block = unwrap_api_payload(detail_raw)
@@ -199,8 +205,8 @@ def fetch_podcast_by_api(
 
     rows: List[Dict] = []
     load_more_key = None
-    while len(rows) < limit:
-        body = {"pid": pid, "order": "desc", "limit": min(20, limit - len(rows))}
+    while len(rows) < max_limit:
+        body = {"pid": pid, "order": "desc", "limit": min(20, max_limit - len(rows))}
         if load_more_key:
             body["loadMoreKey"] = load_more_key
         page_raw = api_post(
@@ -227,7 +233,7 @@ def fetch_podcast_by_api(
                     "data_source": "direct_api",
                 }
             )
-            if len(rows) >= limit:
+            if len(rows) >= max_limit:
                 break
         # loadMoreKey 在原始响应的顶层，unwrap 后会丢失，需从 page_raw 读取
         load_more_key = page_raw.get("loadMoreKey") or page.get("loadMoreKey")
@@ -262,6 +268,7 @@ def xyz_post(base_url: str, token: str, endpoint: str, payload: Dict) -> Dict:
 
 
 def fetch_podcast_by_xyz(base_url: str, token: str, url: str, limit: int) -> Dict:
+    max_limit = normalize_limit(limit)
     pid = extract_pid_from_url(url)
     detail = xyz_post(base_url, token, "/podcast_detail", {"pid": pid}).get("data", {})
     podcast_title = detail.get("title") or pid
@@ -269,7 +276,7 @@ def fetch_podcast_by_xyz(base_url: str, token: str, url: str, limit: int) -> Dic
 
     rows: List[Dict] = []
     load_more_key = None
-    while len(rows) < limit:
+    while len(rows) < max_limit:
         payload = {"pid": pid, "order": "desc"}
         if load_more_key:
             payload["loadMoreKey"] = load_more_key
@@ -294,7 +301,7 @@ def fetch_podcast_by_xyz(base_url: str, token: str, url: str, limit: int) -> Dic
                     "data_source": "xyz_api",
                 }
             )
-            if len(rows) >= limit:
+            if len(rows) >= max_limit:
                 break
         load_more_key = page.get("loadMoreKey")
         if not load_more_key:
@@ -331,7 +338,8 @@ def fetch_podcast_from_next_data(url: str, limit: int, timeout: int = 20) -> Opt
     episodes_raw = podcast.get("episodes") or []
 
     rows: List[Dict] = []
-    for ep in episodes_raw[:limit]:
+    selected_episodes = episodes_raw if limit <= 0 else episodes_raw[:limit]
+    for ep in selected_episodes:
         duration_sec = to_int(ep.get("duration"))
         rows.append(
             {
@@ -769,7 +777,12 @@ def main() -> None:
         default=Path("data"),
         help="数据仓库目录（snapshots/latest/database）。",
     )
-    parser.add_argument("--limit", type=int, default=100, help="每个播客抓取集数上限。")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=100,
+        help="每个播客抓取集数上限；传 0 表示尽可能抓全量。",
+    )
     parser.add_argument("--xyz-base-url", type=str, default=None, help="xyz 地址")
     args = parser.parse_args()
 

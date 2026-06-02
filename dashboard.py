@@ -227,12 +227,27 @@ trend_selected = st.multiselect(
     help="默认展示订阅数 Top 5，可自由增减",
 )
 
+range_options = {"全部": None, "近1年": 365, "近6个月": 183}
+time_range = st.radio(
+    "时间范围",
+    options=list(range_options.keys()),
+    horizontal=True,
+    index=0,
+    key="trend_time_range",
+)
+
 trend_df = df.dropna(subset=["published_at_est", "play_count"]).copy()
 trend_df = trend_df[trend_df["podcast_title"].isin(trend_selected)]
 trend_df = trend_df.sort_values("published_at_est")
 
+days = range_options.get(time_range)
+if days is not None and not trend_df.empty:
+    latest_date = trend_df["published_at_est"].max()
+    cutoff = latest_date - pd.Timedelta(days=days)
+    trend_df = trend_df[trend_df["published_at_est"] >= cutoff]
+
 if trend_df.empty:
-    st.info("请至少选择一个播客。")
+    st.info("当前筛选条件下无数据，请调整播客或时间范围。")
 else:
     fig_trend = px.line(
         trend_df, x="published_at_est", y="play_count",
