@@ -105,22 +105,40 @@ with col_info:
 summary = summary_table(df)
 podcasts = df["podcast_title"].unique().tolist()
 
-# ── 顶部 KPI ─────────────────────────────────────────────
+# ── 顶部 KPI（Top 5 详细卡片 + 其余列表）────────────────────
 st.divider()
-kpi_cols = st.columns(len(podcasts))
-for i, pod in enumerate(podcasts):
-    sub = df[df["podcast_title"] == pod]
-    subs = int(sub["subscribers"].dropna().max()) if not sub["subscribers"].dropna().empty else 0
-    avg_play = int(sub["play_count"].mean()) if not sub["play_count"].dropna().empty else 0
-    freq = None
-    if len(sub) > 1:
-        deltas = sub["published_at_est"].sort_values(ascending=False).diff().dropna().abs()
-        freq = round(deltas.dt.days.mean(), 1) if not deltas.empty else None
-    with kpi_cols[i]:
-        st.metric("订阅数", f"{subs:,}")
-        st.metric("均播放量", f"{avg_play:,}")
-        st.metric("更新间隔", f"{freq} 天" if freq else "—")
-        st.caption(pod)
+
+ranked = summary.sort_values("订阅数", ascending=False, na_position="last").reset_index(drop=True)
+top5 = ranked.head(5)
+rest = ranked.iloc[5:]
+
+st.subheader("🏆 Top 5 节目（按订阅数）")
+if not top5.empty:
+    kpi_cols = st.columns(len(top5))
+    for i, (_, row) in enumerate(top5.iterrows()):
+        subs = int(row["订阅数"]) if pd.notna(row["订阅数"]) else 0
+        avg_play = int(row["均播放量"]) if pd.notna(row["均播放量"]) else 0
+        freq = row["更新间隔(天)"]
+        with kpi_cols[i]:
+            st.metric("订阅数", f"{subs:,}")
+            st.metric("均播放量", f"{avg_play:,}")
+            st.metric("更新间隔", f"{freq} 天" if pd.notna(freq) else "—")
+            st.caption(f"#{i + 1}　{row['播客']}")
+
+if not rest.empty:
+    st.markdown("**其余节目**")
+    rest_show = rest[["播客", "订阅数", "抓取集数", "更新间隔(天)", "均播放量", "均评论数"]].copy()
+    rest_show.insert(0, "排名", range(6, 6 + len(rest_show)))
+    st.dataframe(
+        rest_show,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "订阅数": st.column_config.NumberColumn(format="%d"),
+            "均播放量": st.column_config.NumberColumn(format="%d"),
+            "均评论数": st.column_config.NumberColumn(format="%.1f"),
+        },
+    )
 
 st.divider()
 
@@ -164,17 +182,31 @@ with chart_col2:
 
 # ── 播放量趋势 ────────────────────────────────────────────
 st.subheader("播放量趋势（按发布时间）")
-trend_df = df.dropna(subset=["published_at_est", "play_count"]).copy()
-trend_df = trend_df.sort_values("published_at_est")
-fig_trend = px.line(
-    trend_df, x="published_at_est", y="play_count",
-    color="podcast_title",
-    color_discrete_map={p: color_for(p) for p in trend_df["podcast_title"].unique()},
-    markers=True, hover_data=["episode_title", "comment_count"],
-    labels={"published_at_est": "发布日期", "play_count": "播放量", "podcast_title": "播客"},
+
+# 默认展示 Top 5（按订阅数），避免一次画 15 条线过于杂乱
+default_trend = ranked.head(5)["播客"].tolist()
+trend_selected = st.multiselect(
+    "选择要对比的播客", podcasts, default=default_trend,
+    key="trend_podcasts",
+    help="默认展示订阅数 Top 5，可自由增减",
 )
-fig_trend.update_layout(margin=dict(l=0, r=0, t=10, b=10), height=300, legend_title="")
-st.plotly_chart(fig_trend, use_container_width=True)
+
+trend_df = df.dropna(subset=["published_at_est", "play_count"]).copy()
+trend_df = trend_df[trend_df["podcast_title"].isin(trend_selected)]
+trend_df = trend_df.sort_values("published_at_est")
+
+if trend_df.empty:
+    st.info("请至少选择一个播客。")
+else:
+    fig_trend = px.line(
+        trend_df, x="published_at_est", y="play_count",
+        color="podcast_title",
+        color_discrete_map={p: color_for(p) for p in trend_df["podcast_title"].unique()},
+        markers=True, hover_data=["episode_title", "comment_count"],
+        labels={"published_at_est": "发布日期", "play_count": "播放量", "podcast_title": "播客"},
+    )
+    fig_trend.update_layout(margin=dict(l=0, r=0, t=10, b=10), height=300, legend_title="")
+    st.plotly_chart(fig_trend, use_container_width=True)
 
 # ── 单集明细 ──────────────────────────────────────────────
 st.subheader("单集明细")
