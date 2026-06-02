@@ -203,7 +203,13 @@ else:
         color="podcast_title",
         color_discrete_map={p: color_for(p) for p in trend_df["podcast_title"].unique()},
         markers=True, hover_data=["episode_title", "comment_count"],
-        labels={"published_at_est": "发布日期", "play_count": "播放量", "podcast_title": "播客"},
+        labels={
+            "published_at_est": "发布日期",
+            "play_count": "播放量",
+            "podcast_title": "播客",
+            "episode_title": "节目标题",
+            "comment_count": "评论数",
+        },
     )
     fig_trend.update_layout(margin=dict(l=0, r=0, t=10, b=10), height=300, legend_title="")
     st.plotly_chart(fig_trend, use_container_width=True)
@@ -215,7 +221,19 @@ filter_col1, filter_col2, filter_col3 = st.columns([2, 2, 2])
 with filter_col1:
     selected = st.multiselect("筛选播客", podcasts, default=podcasts)
 with filter_col2:
-    sort_by = st.selectbox("排序字段", ["published_at_est", "play_count", "comment_count", "like_count", "duration_minutes"], index=0)
+    sort_labels = {
+        "published_at_est": "发布日期",
+        "play_count": "播放量",
+        "comment_count": "评论数",
+        "like_count": "点赞数",
+        "duration_minutes": "时长(分)",
+    }
+    sort_by = st.selectbox(
+        "排序字段",
+        list(sort_labels.keys()),
+        index=0,
+        format_func=lambda c: sort_labels.get(c, c),
+    )
 with filter_col3:
     sort_asc = st.radio("排序方向", ["降序", "升序"], horizontal=True) == "升序"
 
